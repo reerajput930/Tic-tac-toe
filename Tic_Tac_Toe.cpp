@@ -25,7 +25,10 @@ int main()
 { 
      string p1,p2;
      cout<<"kindly Enter your name before start! "<<endl;
-     cin>>p1>>p2;
+     cout<<"player 1 name: ";
+     cin>>p1;
+     cout<<"player 2 name: ";
+     cin>>p2;
     char mark;
     for (int i = 1; i <= 9; i++)
     {
@@ -33,9 +36,10 @@ int main()
         matrix_prient();
         board();
         if (turn)
-            cout << "player 1 turn and mark 'O' " << endl;
+            cout <<"player "<<p1<< " turn and mark 'O' " << endl;
         else
-            cout << "player 2 turn and mark 'x' " << endl;
+            cout <<"player "<<p2<< " turn and mark 'X' " << endl;
+            
         cout << "enter your number by seeing the above filled matrix: ";
         cin >> input;
 
