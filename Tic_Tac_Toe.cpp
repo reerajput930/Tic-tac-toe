@@ -1,5 +1,6 @@
 #include <iostream>
-#include<unistd.h>
+#include <unistd.h>
+#include <windows.h>
 #include <conio.h>
 using namespace std;
 
@@ -8,38 +9,33 @@ void board();
 int addmark(char);
 int check(char);
 int turn = 1;
-char matrix[3][3] = {{
-                         ' ',
-                         ' ',
-                         ' ',
-                     },
-                     {
-                         ' ',
-                         ' ',
-                         ' ',
-                     },
-                     {' ', ' ', ' '}};
+
+
+char matrix[3][3] = {{'1','2','3',},
+                     {'4','5', '6',},
+                     {'7', '8', '9'}};
 
 int input;
 int main()
-{ 
-     string p1,p2;
-     cout<<"kindly Enter your name before start! "<<endl;
-     cout<<"player 1 name: ";
-     cin>>p1;
-     cout<<"player 2 name: ";
-     cin>>p2;
+{   
+    system("color 70");
+    string p1, p2;
+    cout << "kindly Enter your name before start! " << endl;
+    cout << "player 1 name: ";
+    cin >> p1;
+    cout << "player 2 name: ";
+    cin >> p2;
     char mark;
     for (int i = 1; i <= 9; i++)
     {
         system("cls");
-        matrix_prient();
+        // matrix_prient();
         board();
         if (turn)
-            cout <<"player "<<p1<< " turn and mark 'O' " << endl;
+            cout << "player " << p1 << " turn and mark 'O' " << endl;
         else
-            cout <<"player "<<p2<< " turn and mark 'X' " << endl;
-            
+            cout << "player " << p2 << " turn and mark 'X' " << endl;
+
         cout << "enter your number by seeing the above filled matrix: ";
         cin >> input;
 
@@ -61,22 +57,25 @@ int main()
             continue;
         }
 
-        int won =check(mark);
+        int won = check(mark);
 
-      if(won){
-          system("cls");
-          board();
-          if(turn) cout<<"\t\t\t************* player 1 ("<<p1<<") won the game ************"<<endl;
-          else cout<<"\t\t\t************* player 2 ("<<p2<<") won the game ************"<<endl;
-          break;
-      }
-      if(i==9){
-          system("cls");
-          board();
-          cout<<"\t\t\t******** match is drow ************\n";
-          cout<<"play next round!"<<endl;
-      }
-       
+        if (won)
+        {
+            system("cls");
+            board();
+            if (turn)
+                cout << "\t\t\t************* player 1 (" << p1 << ") won the game ************" << endl;
+            else
+                cout << "\t\t\t************* player 2 (" << p2 << ") won the game ************" << endl;
+            break;
+        }
+        if (i == 9)
+        {
+            system("cls");
+            board();
+            cout << "\t\t\t******** match is drow ************\n";
+            cout << "play next round!" << endl;
+        }
 
         turn = !turn;
     }
@@ -85,23 +84,19 @@ int main()
     return 0;
 }
 
-void matrix_prient()
-{
-    
-    cout << " 1   2 | 3 " << endl;
-    cout << "----------" << endl;
-    cout << " 4 | 5 | 6 " << endl;
-    cout << "----------" << endl;
-    cout << " 7 | 8 | 9 " << endl;
-}
 void board()
 {
-    cout<<"                                      Tic Tic Toe game \n\n";
-    cout << "                                        " << matrix[0][0] << " | " << matrix[0][1] << " | " << matrix[0][2] << " " << endl;
-    cout << "                                       -----------" << endl;
-    cout << "                                        " << matrix[1][0] << " | " << matrix[1][1] << " | " << matrix[1][2] << " " << endl;
-    cout << "                                       ------------" << endl;
-    cout << "                                        " << matrix[2][0] << " | " << matrix[2][1] << " | " << matrix[2][2] << " " << endl;
+    cout << "   "<< "   |   " << "   |   " << endl;
+    cout << "   "<< matrix[0][0] << "  |   " << matrix[0][1] << "  |   " << matrix[0][2] << endl;
+    cout << "   "<< "   |   " << "   |   " << endl;
+    cout << "--------------------"<< endl;
+    cout << "   " << "   |   " << "   |   " << endl;
+    cout << "   " << matrix[1][0] << "  |   " << matrix[1][1] << "  |   " << matrix[1][2] << endl;
+    cout << "   " << "   |   " << "   |   " << endl;
+    cout << "--------------------" << endl;
+    cout << "   " << "   |   " << "   |   " << endl;
+    cout << "   " << matrix[2][0] << "  |   " << matrix[2][1] << "  |   " << matrix[2][2] << endl;
+    cout << "   " << "   |   " << "   |   " << endl;
 }
 
 int addmark(char mark)
@@ -112,9 +107,9 @@ int addmark(char mark)
         {
             if (k == input)
             {
-                if (matrix[i][j] == ' ')
-                {
-                    matrix[i][j] = mark;
+                if (matrix[i][j] != 'O' ||matrix[i][j] != 'X' )
+                {  
+                     matrix[i][j] = mark;
                     return 1;
                 }
                 else
@@ -124,29 +119,29 @@ int addmark(char mark)
     }
 }
 
-int check(char mark){
+int check(char mark)
+{
     //three row
-    if(matrix[0][0]==mark&&matrix[0][1]==mark&&matrix[0][2]==mark)
-    return 1;
-    if(matrix[1][0]==mark&&matrix[1][1]==mark&&matrix[1][2]==mark)
-    return 1;
-    if(matrix[2][0]==mark&&matrix[2][1]==mark&&matrix[2][2]==mark)
-    return 1;
+    if (matrix[0][0] == mark && matrix[0][1] == mark && matrix[0][2] == mark)
+        return 1;
+    if (matrix[1][0] == mark && matrix[1][1] == mark && matrix[1][2] == mark)
+        return 1;
+    if (matrix[2][0] == mark && matrix[2][1] == mark && matrix[2][2] == mark)
+        return 1;
 
     //three column
-    if(matrix[0][0]==mark&&matrix[1][0]==mark&&matrix[2][0]==mark)
-    return 1;
-    if(matrix[0][1]==mark&&matrix[1][1]==mark&&matrix[2][1]==mark)
-    return 1;
-    if(matrix[0][2]==mark&&matrix[1][2]==mark&&matrix[2][2]==mark)
-    return 1;
+    if (matrix[0][0] == mark && matrix[1][0] == mark && matrix[2][0] == mark)
+        return 1;
+    if (matrix[0][1] == mark && matrix[1][1] == mark && matrix[2][1] == mark)
+        return 1;
+    if (matrix[0][2] == mark && matrix[1][2] == mark && matrix[2][2] == mark)
+        return 1;
 
     //two diagonals
-    if(matrix[0][0]==mark&&matrix[1][1]==mark&&matrix[2][2]==mark)
-    return 1;
-    if(matrix[2][0]==mark&&matrix[1][1]==mark&&matrix[0][2]==mark)
-    return 1;
-
+    if (matrix[0][0] == mark && matrix[1][1] == mark && matrix[2][2] == mark)
+        return 1;
+    if (matrix[2][0] == mark && matrix[1][1] == mark && matrix[0][2] == mark)
+        return 1;
 
     return 0;
 }
