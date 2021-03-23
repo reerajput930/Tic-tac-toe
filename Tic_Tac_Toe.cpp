@@ -11,13 +11,12 @@ int check(char);
 int turn = 1;
 
 
-char matrix[3][3] = {{'1','2','3',},
-                     {'4','5', '6',},
-                     {'7', '8', '9'}};
+char matrix[3][3] = {{' ',' ',' ',},
+                     {' ',' ', ' ',},
+                     {' ', ' ', ' '}};
 
 int input;
 int main()
-<<<<<<< HEAD
 {   
     system("color 70");
     string p1, p2;
@@ -26,15 +25,7 @@ int main()
     cin >> p1;
     cout << "player 2 name: ";
     cin >> p2;
-=======
-{ 
-     string p1,p2;
-     cout<<"kindly Enter your name before start! "<<endl;
-     cout<<"player 1 name: ";
-     cin>>p1;
-     cout<<"player 2 name: ";
-     cin>>p2;
->>>>>>> c11eed4f89557b65a81e9d027b81fc796f90c658
+
     char mark;
     for (int i = 1; i <= 9; i++)
     {
@@ -42,18 +33,14 @@ int main()
         // matrix_prient();
         board();
         if (turn)
-<<<<<<< HEAD
+
             cout << "player " << p1 << " turn and mark 'O' " << endl;
         else
             cout << "player " << p2 << " turn and mark 'X' " << endl;
 
-=======
-            cout <<"player "<<p1<< " turn and mark 'O' " << endl;
-        else
-            cout <<"player "<<p2<< " turn and mark 'X' " << endl;
             
->>>>>>> c11eed4f89557b65a81e9d027b81fc796f90c658
-        cout << "enter your number by seeing the above filled matrix: ";
+
+        cout << "enter your number (from 1 to 9) matrix: ";
         cin >> input;
 
         //if invalid input
