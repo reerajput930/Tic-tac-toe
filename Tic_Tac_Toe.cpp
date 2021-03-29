@@ -4,7 +4,7 @@
 #include <conio.h>
 using namespace std;
 
-void matrix_prient();
+//all function
 void board();
 int addmark(char);
 int check(char);
@@ -111,7 +111,7 @@ int addmark(char mark)
         {
             if (k == input)
             {
-                if (matrix[i][j] != 'O' ||matrix[i][j] != 'X' )
+                if (matrix[i][j] != 'O' and matrix[i][j] != 'X' )
                 {  
                      matrix[i][j] = mark;
                     return 1;
